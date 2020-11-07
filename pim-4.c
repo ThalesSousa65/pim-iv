@@ -9,9 +9,14 @@ typedef struct dados_do_login
   int senha;
 } dados_do_login;
 
+typedef struct {
+dados_do_login 
+  A[]; 
+} arquivo;
+
 //funções.
 void limpaTela();
-void adcUsuario(dados_do_login *Plogin, char usuario, int senha);
+void adcUsuario(dados_do_login *Plogin, arquivo *Parq, char usuario, int senha);
 
 //função main.
 int main()
@@ -25,6 +30,8 @@ int main()
 void telaInicialLogin()
 {
   dados_do_login *Plogin;
+
+  arquivo *Parq;
   int funcaoDesejada = 1;
 
   while (funcaoDesejada < 3 && funcaoDesejada > 0)
@@ -38,70 +45,67 @@ void telaInicialLogin()
 
     scanf("%d", &funcaoDesejada);
 
-    limpaTela();
+      limpaTela();
 
-    char usuario[61];
-    int senha[61];
+      char usuario[61];
+      int senha[61];
 
     switch (funcaoDesejada)
     {
     case 1:
-      //dados cadastrais.
-      printf("\nFuncao escolhida: 1 - Primeiro acesso: \n");
+        //dados cadastrais.
+        printf("\nFuncao escolhida: 1 - Primeiro acesso: \n");
 
-      printf("\nDigite um usuario: ");
+        printf("\nDigite um usuario: ");
 
-      //limpar o buffer
-      setbuf(stdin, 0);
+        //limpar o buffer
+        setbuf(stdin, 0);
 
-      //lê a string
-      fgets(usuario, 61, stdin);
+        //lê a string
+        fgets(usuario, 61, stdin);
 
-      //limpa as casas nao ultilizada
-      usuario[strlen(usuario) - 1] = '\0';
+        //limpa as casas nao ultilizada
+        usuario[strlen(usuario) - 1] = '\0';
 
-      printf("\nDigite uma senha: ");
+          printf("\nDigite uma senha: ");
 
-      //limpar o buffer
-      setbuf(stdin, 0);
+          //limpar o buffer
+          setbuf(stdin, 0);
 
-      //lê a string
-      fgets(senha, 61, stdin);
+          //lê a string
+          fgets(senha, 61, stdin);
 
-      //limpa as casas nao ultilizada
-      senha[strlen(senha) - 1] = '\0';
+          //limpa as casas nao ultilizada
+          senha[strlen(senha) - 1] = '\0';
 
-      //adicionar o novo usuario oa arquivo
-      adcUsuario(Plogin, usuario, senha);
+        //adicionar o novo usuario oa arquivo
+        adcUsuario(Plogin, Parq, usuario, senha);
 
-      limpaTela();
+        limpaTela();
       break;
 
     case 2:
-      //fazer o login
-      printf("\nFuncao escolhida: 2 - Fazer login\n");
+        //fazer o login
+        printf("\nFuncao escolhida: 2 - Fazer login\n");
 
-      printf("\nDigite um usuario: ");
-      scanf("%s", &Plogin->usuario);
+        printf("\nDigite um usuario: ");
+        scanf("%s", &Plogin->usuario);
 
-      printf("\nDigite uma senha: ");
-      scanf("%d", &Plogin->senha);
+          printf("\nDigite uma senha: ");
+          scanf("%d", &Plogin->senha);
 
-      limpaTela();
+        limpaTela();
       break;
     }
   }
 }
+
 void limpaTela()
 {
   system("CLS");
 }
 
-void adcUsuario(dados_do_login *Plogin, char usuario, int senha)
+void adcUsuario(dados_do_login *Plogin, arquivo *Parq, char usuario, int senha)
 {
-  FILE *Parq;
-
-  Parq = fopen("primeiro-acesso.txt", "a");
-
-  fclose(Parq);
 }
+
